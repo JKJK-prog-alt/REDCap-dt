@@ -11,18 +11,23 @@ public class ReadData {
 	public void split() throws IOException {
 		
 		
-		List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Kalli\\Desktop\\DATA_2021-03-31_2145.csv"));
-		List<String> recList = lines;
+		List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\lisam\\Documents\\Studium\\Projektarbeit\\Gruppe1\\Daten\\DATA_2021-03-31_2145.csv"));
 		String[] result = new String[100];
+		String liste="";
 		
-		for(String liste : recList) {
-			result = liste.split(",");			
-					
+		for(int i=0; i<=3; i++) {
+			StringBuffer sb = new StringBuffer(liste);
+			sb.append(lines.get(i));
+			
+			liste = sb.toString();		
 		}
-		for (int i = 0; i <= 100; i++) {
-			System.out.println(result[i]);
+		result = liste.split(",");	
+		for (int x=0; x<=19; x++) {
+			System.out.println(result[x]);
 		}
+		
 	}
+	
 	public static void main(String[] args) throws IOException {
 		
 		ReadData test = new ReadData();
