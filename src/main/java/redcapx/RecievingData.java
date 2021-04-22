@@ -13,8 +13,11 @@ https://hc.apache.org/httpclient-legacy/tutorial.html
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
 import util.Config;
 
 import java.io.BufferedReader;
@@ -25,25 +28,40 @@ import java.util.List;
 public class RecievingData {
 
     public void tryConnection(){ //Connection yes or no
-
-        final List<NameValuePair> params;
         HttpResponse resp;
         int respCode;
-        BufferedReader reader;
-        ArrayList<String> array;
-
         String token = Config.REDCAP_TOKEN;
         HttpClient client = HttpClientBuilder.create().build();
 
     }
 
     public String getData(){
+
+        final List<NameValuePair> params;
+        final StringBuffer result = new StringBuffer();
         final HttpGet request;
+        HttpResponse response;
         String token = Config.REDCAP_TOKEN;
         HttpClient client = HttpClientBuilder.create().build();
         request = new HttpGet(Config.REDCAP_API_URL);
-        HttpResponse response;
-        final StringBuffer result = new StringBuffer();
+
+
+        params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("token", token));
+        params.add(new BasicNameValuePair("content", "record"));
+        params.add(new BasicNameValuePair("format", "json"));
+        params.add(new BasicNameValuePair("type", "flat"));
+        params.add(new BasicNameValuePair("csvDelimiter", ""));
+
+        request.setHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        try {
+            request.setEntity(new UrlEncodedFormEntity(params));
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+
+
 
         try {
             response = client.execute(request);
