@@ -17,11 +17,13 @@ import org.junit.Test;
 public class TestUploadData {
 	private static Server server;
 	private static UploadData upload;
+	private static Printer printer;
 	
 	@BeforeClass
     public static void setUp() {
         server = new Server();
         server.testConnection();
+        printer = new Printer();
         upload = new UploadData();
     }
 	
@@ -46,10 +48,11 @@ public class TestUploadData {
 		daten.add("Jonas");
 		
 		
-		Boolean succsses = upload.filter(daten);
+		Boolean succsses = upload.filter(server, daten);
 		
 		int numberAllPatients = allPatients.size();
 		 ArrayList<String> allPatientsAdded = server.getPatients();
+		 printer.printPatients(allPatientsAdded);
 		 //ArrayList<ObservationModel> observations = server.getObservationsOfPatient(patientID);
 		assertEquals("Anzahl an Patienten nicht gleich Arraygroesse",numberAllPatients + 1, allPatientsAdded.size());
 		assertEquals(true, succsses);
