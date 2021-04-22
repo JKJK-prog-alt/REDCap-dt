@@ -21,12 +21,12 @@ public class UploadData {
 		AdministrativeGender gender = null;
 		String nachname = null;
 		String vorname = null;
-		for(int i = 10; i < length; i+=2) {
+		for(int i = 0; i < length; i+=2) {
 			String varname = list.get(i);
 			String varwert = list.get(i+1);
 			if(varname.contentEquals("name")) {
 				vorname = varwert;
-			} else if(varname.contentEquals("nachname")) {
+			} else if(varname.contentEquals("familyname")) {
 				nachname = varname;
 			} else if(varname.contentEquals("gender")) {
 				gender = Enumerations.AdministrativeGender.fromCode(varwert);
