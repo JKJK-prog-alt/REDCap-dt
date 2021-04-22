@@ -48,15 +48,16 @@ public class TestUploadData {
 		daten.add("Jonas");
 		
 		
-		Boolean succsses = upload.filter(server, daten);
+		String succsses = upload.filter(server, daten);
 		
 		int numberAllPatients = allPatients.size();
 		 ArrayList<String> allPatientsAdded = server.getPatients();
 		 printer.printPatients(allPatientsAdded);
 		 //ArrayList<ObservationModel> observations = server.getObservationsOfPatient(patientID);
 		assertEquals("Anzahl an Patienten nicht gleich Arraygroesse",numberAllPatients + 1, allPatientsAdded.size());
-		assertEquals(true, succsses);
-		
+		assertEquals(36, succsses.length());
+		ArrayList<ObservationModel> observations = server.getObservationsOfPatient(succsses);
+        assertEquals(2, observations.size());
 		
 		
 	}
