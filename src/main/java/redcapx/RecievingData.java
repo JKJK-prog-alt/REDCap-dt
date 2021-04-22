@@ -5,6 +5,9 @@ Verwirrung zwischen post/get --> wir wollen ja nichts posten sondern bekommen?
 https://www.vogella.com/tutorials/ApacheHttpClient/article.html
 Testen??
 
+Notizen:
+Gruppe 2: ArrayList.ToString --> String uebergeben
+https://hc.apache.org/httpclient-legacy/tutorial.html
  */
 
 import org.apache.http.HttpResponse;
@@ -22,6 +25,7 @@ import java.util.List;
 public class RecievingData {
 
     public void tryConnection(){ //Connection yes or no
+
         final List<NameValuePair> params;
         HttpResponse resp;
         int respCode;
@@ -33,7 +37,7 @@ public class RecievingData {
 
     }
 
-    public void getData(){
+    public String getData(){
         final HttpGet request;
         String token = Config.REDCAP_TOKEN;
         HttpClient client = HttpClientBuilder.create().build();
@@ -51,6 +55,7 @@ public class RecievingData {
         } catch (final Exception e) {
             e.printStackTrace();
         }
+        return result.toString();
     }
 
 }
