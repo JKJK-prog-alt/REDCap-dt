@@ -7,6 +7,6 @@ public class TestRecievingData {
 		RecievingData testing = new RecievingData();
 		System.out.println(testing.tryConnection());
 		//testing.tryConnection();
-		//System.out.println(testing.getData());
+		System.out.println(testing.getData());
 	}
 }

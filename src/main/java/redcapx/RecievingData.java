@@ -98,7 +98,7 @@ public class RecievingData {
             String line = "";
 
             while((line = rd.readLine()) != null){
-                result.append(line);
+                result.append(line).append(","); //Geht das so??
             }
             //just for certainty
             respCode = response.getStatusLine().getStatusCode();
@@ -106,6 +106,7 @@ public class RecievingData {
         }catch (final Exception e) {
             e.printStackTrace();
         }
+        System.out.println(result);
         return result.toString(); //returning the result as String for Nick and Lisamaria
     }
 
