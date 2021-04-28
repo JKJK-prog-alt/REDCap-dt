@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecievingMetaData {
+    /*
+    Sends a request to REDCap_API to get the meta data
+    Returns the Data as String
+    */
     public String getMetaData(){
         final List<NameValuePair> params;
         final StringBuffer result = new StringBuffer();
@@ -55,7 +59,7 @@ public class RecievingMetaData {
         }catch (final Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result.toString();
     }
 

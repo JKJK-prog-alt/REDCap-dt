@@ -32,7 +32,7 @@ public class RecievingData {
 
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
-        params.add(new BasicNameValuePair("format", "json"));
+        params.add(new BasicNameValuePair("format", "csv"));
         params.add(new BasicNameValuePair("type", "flat"));
         params.add(new BasicNameValuePair("csvDelimiter", ""));
 
@@ -107,7 +107,7 @@ public class RecievingData {
         }catch (final Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result.toString(); //returning the result as String for Nick and Lisamaria
     }
 
