@@ -17,6 +17,7 @@ import java.util.List;
 public class RecievingData {
 
     /*
+    Test
     Trying to test the connection:
     Doing a small request;
     method returns TRUE if the connection works & FALSE, if not
