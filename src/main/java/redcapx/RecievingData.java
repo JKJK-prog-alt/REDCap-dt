@@ -107,7 +107,6 @@ public class RecievingData {
         }catch (final Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result);
         return result.toString(); //returning the result as String for Nick and Lisamaria
     }
 
