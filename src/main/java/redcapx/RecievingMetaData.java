@@ -51,7 +51,7 @@ public class RecievingMetaData {
             String line = "";
 
             while((line = rd.readLine()) != null){
-                result.append(line).append(","); //Geht das so??
+                result.append(line);
             }
             //just for certainty
             respCode = response.getStatusLine().getStatusCode();

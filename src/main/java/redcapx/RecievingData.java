@@ -81,7 +81,7 @@ public class RecievingData {
         params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
-        params.add(new BasicNameValuePair("format", "csv"));
+        params.add(new BasicNameValuePair("format", "json"));
         params.add(new BasicNameValuePair("type", "flat"));
         params.add(new BasicNameValuePair("csvDelimiter", ""));
 
