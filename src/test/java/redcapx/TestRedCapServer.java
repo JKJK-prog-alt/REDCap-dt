@@ -1,10 +1,10 @@
 package redcapx;
 import org.junit.Test;
-public class TestRecievingData {
+public class TestRedCapServer {
 
 	@Test
 	public void TestReceivingData() {
-		RecievingData testing = new RecievingData();
+		RedCapServer testing = new RedCapServer();
 		System.out.println(testing.tryConnection());
 		//testing.tryConnection();
 		System.out.println(testing.getData());

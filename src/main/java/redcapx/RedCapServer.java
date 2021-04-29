@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecievingData {
+public class RedCapServer {
 
     /*
     Test
@@ -81,9 +81,9 @@ public class RecievingData {
         params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
-        params.add(new BasicNameValuePair("format", "csv"));
+        params.add(new BasicNameValuePair("format", "json"));
         params.add(new BasicNameValuePair("type", "flat"));
-        params.add(new BasicNameValuePair("csvDelimiter", ""));
+        params.add(new BasicNameValuePair("csvDelimiter", ","));
 
         request.setHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -95,11 +95,12 @@ public class RecievingData {
 
         try{ //executes the request, reads the response line by line with the string buffer
             response = client.execute(request);
+            //System.out.println(response.getEntity().getContent()); Keno idee die nicht fuktioniert
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); //Get the response
             String line = "";
 
             while((line = rd.readLine()) != null){
-                result.append(line).append(","); //Geht das so??
+                result.append(line+"\n");
             }
             //just for certainty
             respCode = response.getStatusLine().getStatusCode();
