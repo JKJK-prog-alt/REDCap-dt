@@ -15,7 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RedCapServer {
-
+    public enum Format {
+        JSON,
+        CSV
+    }
     /*
     Test
     Trying to test the connection:
@@ -29,6 +32,7 @@ public class RedCapServer {
         String token = Config.REDCAP_TOKEN;
         HttpClient client = HttpClientBuilder.create().build();
         final List<NameValuePair> params = new ArrayList<NameValuePair>();
+
 
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
@@ -66,7 +70,7 @@ public class RedCapServer {
     To change the format just change line 82, from csv to json
     Returns the Data as String
     */
-    public String getData(){
+    public String getData(Format inhalt){
         final List<NameValuePair> params;
         final StringBuffer result = new StringBuffer();
         final HttpPost request;
@@ -76,12 +80,13 @@ public class RedCapServer {
         String redcapurl = Config.REDCAP_API_URL;
         HttpClient client = HttpClientBuilder.create().build();
         request = new HttpPost(redcapurl);
+        String bob = inhalt.toString().toLowerCase();
 
         //defining the parameters
         params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
-        params.add(new BasicNameValuePair("format", "json"));
+        params.add(new BasicNameValuePair("format", bob));
         params.add(new BasicNameValuePair("type", "flat"));
         params.add(new BasicNameValuePair("csvDelimiter", ","));
 

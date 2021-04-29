@@ -7,6 +7,7 @@ public class TestRedCapServer {
 		RedCapServer testing = new RedCapServer();
 		System.out.println(testing.tryConnection());
 		//testing.tryConnection();
-		System.out.println(testing.getData());
+		RedCapServer.Format test = RedCapServer.Format.JSON; //Decide what Format u want
+		System.out.println(testing.getData(test));
 	}
 }
