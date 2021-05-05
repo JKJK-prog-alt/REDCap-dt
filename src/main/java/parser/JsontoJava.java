@@ -16,14 +16,16 @@ public class JsontoJava {
 
     public void converter() throws IOException  {
       
-
-        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Kalli\\Desktop\\new.json"));
-        String data= lines.get(0);
-        System.out.println(data);
+    	redcapx.RecievingData testen = new redcapx.RecievingData();	
+		String rohdaten = testen.getData();
+		
+        //List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Kalli\\Desktop\\new.json"));
+		// String data= lines.get(0);
+        System.out.println(rohdaten);
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            Datamodel test = objectMapper.readValue(data, Datamodel.class);
+            Datamodel test = objectMapper.readValue(rohdaten, Datamodel.class);
             System.out.println("ID = "+ test.getRecord_id()+ " and gender = "+ test.getGender() );
         } 
         catch(JsonProcessingException e) {
