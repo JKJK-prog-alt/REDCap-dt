@@ -14,9 +14,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecievingData {
-
+public class RedCapServer {
+    public enum Format {
+        JSON,
+        CSV
+    }
     /*
+    Test
     Trying to test the connection:
     Doing a small request;
     method returns TRUE if the connection works & FALSE, if not
@@ -28,6 +32,7 @@ public class RecievingData {
         String token = Config.REDCAP_TOKEN;
         HttpClient client = HttpClientBuilder.create().build();
         final List<NameValuePair> params = new ArrayList<NameValuePair>();
+
 
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
@@ -65,7 +70,7 @@ public class RecievingData {
     To change the format just change line 82, from csv to json
     Returns the Data as String
     */
-    public String getData(){
+    public String getData(Format inhalt){
         final List<NameValuePair> params;
         final StringBuffer result = new StringBuffer();
         final HttpPost request;
@@ -75,14 +80,15 @@ public class RecievingData {
         String redcapurl = Config.REDCAP_API_URL;
         HttpClient client = HttpClientBuilder.create().build();
         request = new HttpPost(redcapurl);
+        String bob = inhalt.toString().toLowerCase();
 
         //defining the parameters
         params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("content", "record"));
-        params.add(new BasicNameValuePair("format", "csv"));
+        params.add(new BasicNameValuePair("format", bob));
         params.add(new BasicNameValuePair("type", "flat"));
-        params.add(new BasicNameValuePair("csvDelimiter", ""));
+        params.add(new BasicNameValuePair("csvDelimiter", ","));
 
         request.setHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -94,11 +100,12 @@ public class RecievingData {
 
         try{ //executes the request, reads the response line by line with the string buffer
             response = client.execute(request);
+            //System.out.println(response.getEntity().getContent()); Keno idee die nicht fuktioniert
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); //Get the response
             String line = "";
 
             while((line = rd.readLine()) != null){
-                result.append(line).append(","); //Geht das so??
+                result.append(line+"\n");
             }
             //just for certainty
             respCode = response.getStatusLine().getStatusCode();
@@ -106,7 +113,6 @@ public class RecievingData {
         }catch (final Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result);
         return result.toString(); //returning the result as String for Nick and Lisamaria
     }
 
