@@ -6,7 +6,9 @@ public class TestRedCapServerUnirest {
     @Test
     public void TestRedCapServerUnirest(){
         RedCapServerUnirest testing = new RedCapServerUnirest();
-        testing.getData();
+        //testing.getData();
+
+        System.out.println(testing.getData());
 
     }
 
