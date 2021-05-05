@@ -1,4 +1,4 @@
-package Data_Formatting;
+package parser;
 
 import java.util.*;
 
@@ -20,8 +20,8 @@ public class JSONConverter {
       
 		System.out.println(response);
 	    JSONObject res=new JSONObject(response);
-	    JSONArray array = res.getJSONArray("profitarray");
 	    ArrayList<JSONArray> profitList = new ArrayList<>();
+	    JSONArray array = res.getJSONArray("record_id");
 	    ArrayList<ArrayList<Integer>> finalList = new ArrayList<>();
 	    ArrayList<Integer> list1 = new ArrayList<>();
 	    
