@@ -9,6 +9,7 @@ public class TestRedCapServerUnirest {
         //testing.getData();
 
         System.out.println(testing.getData());
+        System.out.println(testing.tryConnection());
 
     }
 
