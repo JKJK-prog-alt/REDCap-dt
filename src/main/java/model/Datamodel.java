@@ -1,8 +1,6 @@
 package model;
 
 public class Datamodel {
-
-
 	
 	private String record_id;
 	private String gender;
@@ -11,10 +9,9 @@ public class Datamodel {
 	private String asa_stage;
 	private String child_pugh;
 	private String cm_stage;
-	private String form_1_complete;
+	private String form_1_complete;	
 	
-	
-		public Datamodel(String record_id,String gender,String hepatitis_b,String bilirubin_concentration, String asa_stage, String child_pugh,String cm_stage, String form_1_complete) {
+		public Datamodel(String record_id,String gender,String hepatitis_b,String bilirubin_concentration, String asa_stage, String child_pugh,String cm_stage , String form_1_complete ) {
 			
 			this.setRecord_id(record_id);
 			this.setGender(gender);
@@ -23,9 +20,7 @@ public class Datamodel {
 			this.setAsa_stage(asa_stage);
 			this.setChild_pugh(child_pugh);
 			this.setCm_stage(cm_stage);
-			this.setForm_1_complete(form_1_complete);
-			
-				
+			//this.setForm_1_complete(form_1_complete);					
 		}
 		
 		public  Datamodel() {
@@ -94,9 +89,5 @@ public class Datamodel {
 
 		public void setForm_1_complete(String form_1_complete) {
 			this.form_1_complete = form_1_complete;
-		}
-	
-		
-
-
+		}	
 }
