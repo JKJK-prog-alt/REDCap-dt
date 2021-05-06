@@ -1,6 +1,6 @@
 package redcapx;
 import kong.unirest.JsonNode;
-import kong.unirest.HttpResponse;;
+import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import util.Config;
 
