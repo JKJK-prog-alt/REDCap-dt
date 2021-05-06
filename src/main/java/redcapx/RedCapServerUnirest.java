@@ -14,7 +14,6 @@ public class RedCapServerUnirest {
     public boolean tryConnection(){
         String token = Config.REDCAP_TOKEN;
         String redcapurl = Config.REDCAP_API_URL;
-        JsonNode blob = null;
         try{
             HttpResponse<JsonNode> response = Unirest.post(redcapurl)
                     .header("Content-Type", "application/x-www-form-urlencoded")
