@@ -10,6 +10,7 @@ public class TestRedCapServerUnirest {
 
         System.out.println(testing.getData());
         System.out.println(testing.tryConnection());
+        System.out.println(testing.getMetaData());
 
     }
 

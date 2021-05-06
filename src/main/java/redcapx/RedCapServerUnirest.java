@@ -63,4 +63,27 @@ public class RedCapServerUnirest {
         }
         return responsebody;
     }
+    /*
+    Sends a request to REDCap_API to get the patient metadata
+    Returns the MetaData as JsonNode
+    */
+    public JsonNode getMetaData(){
+        String token = Config.REDCAP_TOKEN;
+        String redcapurl = Config.REDCAP_API_URL;
+        JsonNode responsebody = null;
+        try{
+            HttpResponse<JsonNode> response = Unirest.post(redcapurl)
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .field("token", token)
+                    .field("content", "metadata")
+                    .field("type", "flat")
+                    .field("format", "json")
+                    .asJson();
+            System.out.println(response.getStatusText());
+            responsebody=response.getBody();
+        }catch(final Exception e) {
+            e.printStackTrace();
+        }
+        return responsebody;
+    }
 }
