@@ -15,11 +15,12 @@ public class RedCapServerUnirest {
         try{
             HttpResponse<JsonNode> response = Unirest.post(redcapurl)
                     .header("Content-Type", "application/x-www-form-urlencoded")
-                    .queryString("apiKey", "token")
+                    .queryString("apiKey", token)
                     .field("content", "record")
                     .field("type", "flat")
                     .asJson();
-             test = response.toString();
+            System.out.println(response);
+            test = response.toString();
 
 
         }catch(final Exception e) {

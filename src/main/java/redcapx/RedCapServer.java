@@ -100,7 +100,7 @@ public class RedCapServer {
 
         try{ //executes the request, reads the response line by line with the string buffer
             response = client.execute(request);
-            //System.out.println(response.getEntity().getContent()); Keno idee die nicht fuktioniert
+            //System.out.println(response.getEntity().getContent()); //Keno idee die nicht fuktioniert
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); //Get the response
             String line = "";
 
