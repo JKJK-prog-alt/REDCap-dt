@@ -19,7 +19,6 @@ src/main/java/util/Config.java
 /bin/
 
 template.iml
-
 .idea/
-
+*.iml
 .DS_Store
