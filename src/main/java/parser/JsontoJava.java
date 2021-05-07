@@ -1,37 +1,71 @@
 package parser;
+
 import java.util.*;
+
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import model.Datamodel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import kong.unirest.json.JSONArray;
+import kong.unirest.json.JSONObject;
+import kong.unirest.json.JSONString;
+import model.Datamodel;
+import util.Config;
+
 import java.io.IOException;
 import java.nio.*;
 import java.nio.file.*;
 
+
 public class JsontoJava {	
 		
     public void converter() throws IOException  {
-    	
-    	
-    	redcapx.RedCapServer.Format format = redcapx.RedCapServer.Format.JSON; 
-    	redcapx.RedCapServer testen = new redcapx.RedCapServer();	
-		String rohdaten = testen.getData(format);
+   
+    	redcapx.RedCapServerUnirest testen = new redcapx.RedCapServerUnirest();	
+    	JsonNode rohdaten = testen.getData();
 		
-//      List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Kalli\\Desktop\\new.json"));
+//      List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\lisam\\Documents\\Studium\\Projektarbeit\\Gruppe1\\Daten\\test.json"));
 //		String rohdaten= lines.get(0);
+    	
         System.out.println(rohdaten);
         ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            Datamodel test = objectMapper.readValue(rohdaten, Datamodel.class);
-            System.out.println("ID = "+ test.getRecord_id()+ " and gender = "+ test.getGender() );  
-                 
-        } 
-        catch(JsonProcessingException  e   ) {
-            e.printStackTrace();
+        
+        ArrayList<String> id = new ArrayList<String>();
+        ArrayList<String> gen = new ArrayList<String>();
+        ArrayList<String> hep = new ArrayList<String>();
+        ArrayList<Double> bili = new ArrayList<Double>();
+        ArrayList<String> form_com = new ArrayList<String>();
+       
+        for (int i = 0; i < rohdaten.getArray().length(); i++) {
+        	JSONObject jobj = rohdaten.getArray().getJSONObject(i);
+        	System.out.println(jobj);
+        	
+        	id.add(i, jobj.getString("record_id"));
+        	gen.add(i, jobj.getString("gender"));
+        	hep.add(i, jobj.getString("hepatitis_b"));       	
+        	bili.add(i, jobj.getDouble("bilirubin_concentration"));
+        	form_com.add(i, jobj.getString("form_1_complete"));       	
         }
+        
+        System.out.println(id);
+    	System.out.println(gen);
+    	System.out.println(hep);
+    	System.out.println(bili);
+    	System.out.println(form_com);
+
+        
+//       try {
+//            Datamodel test = objectMapper.readValue(teste, Datamodel.class);
+//            
+//            System.out.println("ID = "+ test.getRecord_id()+ " and gender = "+ test.getGender() );  
+//                 
+//        } 
+//        catch(JsonProcessingException  e   ) {
+//            e.printStackTrace();
+//        }
         
 
 // https://www.youtube.com/watch?v=ynO4_XtUdOg
@@ -40,11 +74,12 @@ public class JsontoJava {
     public static void main(String[] args) throws IOException {
 
             JsontoJava conv = new JsontoJava();
-          try {
-        	  conv.converter();
-		} catch (UnrecognizedPropertyException e) {
-			 
-		}
+            conv.converter();
+//          try {
+//        	  conv.converter();
+//		} catch (UnrecognizedPropertyException e) {
+//			 
+//		}
            
     }
 }
