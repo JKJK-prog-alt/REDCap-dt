@@ -6,7 +6,10 @@ package upload;
  * Test Class for Printer
  * **********************************************************/
 
-import model.ObservationModel;
+import model.AbstractObservationModel;
+import model.BooleanObservationModel;
+import model.NumericalObservationModel;
+import model.CategorialObservationModel;
 import server.Server;
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
@@ -38,20 +41,26 @@ public class TestPrint {
 	@Test
     public void testPrintAllObs() {
         String patientID = server.createPatient("Doe", "Jane", Enumerations.AdministrativeGender.FEMALE);
-        ArrayList<ObservationModel> observations1 = server.getObservationsOfPatient(patientID);
+        ArrayList<AbstractObservationModel> observations1 = server.getObservationsOfPatient(patientID);
         observations1.size();
         printer.printAllObs(observations1);
         assertEquals("Es ist nicht genau eine Observation vorhanden",1, observations1.size());
-        ObservationModel observationNumerical = new ObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "bilirubin_concentration", 1, "mg/dl");
-        server.createNumericalObservation(observationNumerical, patientID);
-        ArrayList<ObservationModel> observations2 = server.getObservationsOfPatient(patientID);
+        NumericalObservationModel observationNumerical = new NumericalObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "bilirubin_concentration", 1, "mg/dl");
+        server.createObservation(observationNumerical, patientID);
+        ArrayList<AbstractObservationModel> observations2 = server.getObservationsOfPatient(patientID);
         printer.printAllObs(observations2);
         assertEquals("Es sind nicht genau 2 Observations vorhanden",2, observations2.size());
-        ObservationModel observationCategorical = new ObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "lymph_node_staging", "http://sfb125.de/ontology/ihCCApplicationOntology/", "cN1");
-        server.createCategoricalObservation(observationCategorical, patientID);
-        ArrayList<ObservationModel> observations3 = server.getObservationsOfPatient(patientID);
+        CategorialObservationModel observationCategorical = new CategorialObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "lymph_node_staging", "http://sfb125.de/ontology/ihCCApplicationOntology/", "cN1");
+        server.createObservation(observationCategorical, patientID);
+        ArrayList<AbstractObservationModel> observations3 = server.getObservationsOfPatient(patientID);
         printer.printAllObs(observations3);
         assertEquals("Es sind nicht genau 3 Observations vorhanden",3, observations3.size());
+        BooleanObservationModel observationCategorialBoolean = new BooleanObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "chronic_hepatitis_b_observation", true);
+        server.createObservation(observationCategorialBoolean, patientID);
+        ArrayList<AbstractObservationModel> observations4 = server.getObservationsOfPatient(patientID);
+        printer.printAllObs(observations4);
+        assertEquals("Es sind nicht genau 4 Observations vorhanden",4, observations4.size());
+        
     }
 
 }
