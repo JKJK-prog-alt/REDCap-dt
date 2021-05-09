@@ -6,7 +6,7 @@ package upload;
  * Test Class for UploadData
  * **********************************************************/
 
-import model.ObservationModel;
+import model.AbstractObservationModel;
 import server.Server;
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
