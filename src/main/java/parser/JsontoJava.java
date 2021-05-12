@@ -27,10 +27,10 @@ public class JsontoJava {
     	redcapx.RedCapServerUnirest testen = new redcapx.RedCapServerUnirest();	
     	JsonNode rohdaten = testen.getData();
 		
-//      List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\lisam\\Documents\\Studium\\Projektarbeit\\Gruppe1\\Daten\\test.json"));
+//    	List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\lisam\\Documents\\Studium\\Projektarbeit\\Gruppe1\\Daten\\test.json"));
 //		String rohdaten= lines.get(0);
     	
-        System.out.println(rohdaten);
+//        System.out.println(rohdaten);
         ObjectMapper objectMapper = new ObjectMapper();
         
         ArrayList<String> id = new ArrayList<String>();
@@ -38,7 +38,8 @@ public class JsontoJava {
         ArrayList<String> hep = new ArrayList<String>();
         ArrayList<Double> bili = new ArrayList<Double>();
         ArrayList<String> form_com = new ArrayList<String>();
-       
+        
+      
         for (int i = 0; i < rohdaten.getArray().length(); i++) {
         	JSONObject jobj = rohdaten.getArray().getJSONObject(i);
         	System.out.println(jobj);
@@ -50,11 +51,20 @@ public class JsontoJava {
         	form_com.add(i, jobj.getString("form_1_complete"));       	
         }
         
-        System.out.println(id);
-    	System.out.println(gen);
-    	System.out.println(hep);
-    	System.out.println(bili);
-    	System.out.println(form_com);
+//      System.out.println(id);
+//    	System.out.println(gen);
+//    	System.out.println(hep);
+//    	System.out.println(bili);
+//    	System.out.println(form_com);
+    	
+    	for (int i = 0; i < id.size(); i++) {
+    		Datamodel data = new Datamodel(id.get(i).toString(),gen.get(i).toString(),hep.get(i).toString(),bili.get(i).doubleValue(),form_com.get(i).toString());
+			System.out.println(data);
+			
+			
+		}
+    	
+         
 
         
 //       try {
