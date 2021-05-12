@@ -6,11 +6,10 @@ package upload;
  * Test Class for UploadData
  * **********************************************************/
 
-import model.AbstractObservationModel;
+import model.*;
 import server.Server;
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
-import org.hl7.fhir.r4.model.Enumerations;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,43 +20,29 @@ public class TestUploadData {
 	
 	@BeforeClass
     public static void setUp() {
-        server = new Server();
-        server.testConnection();
+		server = new Server();
+		server.testConnection();
         printer = new Printer();
         upload = new UploadData();
     }
 	
 	@Test
-	public void testFilter() {
+	public void testUpload() {
 		ArrayList<String> allPatients = server.getPatients();
 		
-		ArrayList<String> daten = new ArrayList<String>();
-		daten.add("bilirubin_concentration");
-		daten.add("33");
-		daten.add("form_1_complete");
-		daten.add("2");
-		daten.add("gender");
-		daten.add("male");
-		daten.add("hepatitis_b");
-		daten.add("1");
-		daten.add("record_id");
-		daten.add("1");
-		daten.add("familyname");
-		daten.add("Dolittle");
-		daten.add("name");
-		daten.add("Jonas");
-		
-		
-		String succsses = upload.filter(server, daten);
+		ArrayList<AbstractObservationModel> data = new ArrayList<AbstractObservationModel>();
+		data.add(new BooleanObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/","chronic_hepatitis_b_observation", true));
+		data.add(new NumericalObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "bilirubin_concentration", 33, "mg/dl"));
+
+		String success = upload.upload(server, data, "male");
 		
 		int numberAllPatients = allPatients.size();
 		 ArrayList<String> allPatientsAdded = server.getPatients();
 		 printer.printPatients(allPatientsAdded);
-		 //ArrayList<ObservationModel> observations = server.getObservationsOfPatient(patientID);
 		assertEquals("Anzahl an Patienten nicht gleich Arraygroesse",numberAllPatients + 1, allPatientsAdded.size());
-		assertEquals(36, succsses.length());
-		ArrayList<ObservationModel> observations = server.getObservationsOfPatient(succsses);
-        assertEquals(2, observations.size());
+		assertEquals(36, success.length());
+		ArrayList<AbstractObservationModel> observations = server.getObservationsOfPatient(success);
+        assertEquals(3, observations.size());
 		
 		
 	}

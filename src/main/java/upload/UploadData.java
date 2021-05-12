@@ -2,56 +2,64 @@ package upload;
 
 
 import java.util.ArrayList;
-
 import org.hl7.fhir.r4.model.Enumerations;
-import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
-
-import model.ObservationModel;
+import model.*;
 import server.Server;
-import upload.ObsCreator;
 
 /************************************************************
- * @Author: Keno Maerz, Jonas Schick, Julia Kurashvili
+ * @Author: Jonas Schick, Julia Kurashvili
  * 
- * UploadData-Class (to be cleaned)
+ * UploadData-Class uploads anonymous observations into the
+ * local server 
  * **********************************************************/
 
 public class UploadData {
-
-	public String filter(Server server, ArrayList<String> list) {
-		int length = list.size();
-		AdministrativeGender gender = null;
-		String nachname = null;
-		String vorname = null;
-		String catwert = null;
-		double numwert = 0;
-
-		ObservationModel observation;
-		for(int i = 0; i < length; i+=2) {
-			String varname = list.get(i);
-			String varwert = list.get(i+1);
-			if(varname.contentEquals("name")) {
-				vorname = varwert;
-			} else if(varname.contentEquals("familyname")) {
-				nachname = varwert;
-			} else if(varname.contentEquals("gender")) {
-				gender = Enumerations.AdministrativeGender.fromCode(varwert);
-			}
-		}
-		if((gender == null) | (nachname == null) | (vorname == null)) {
-			return null;
-		} 
-		String patientID = server.createPatient(nachname, vorname, gender);
-
-		for(int i = 0; i < length; i+=2) {
-			String varname = list.get(i);
-			String varwert = list.get(i+1);
-
-			observation = ObsCreator.createObservationModel(varname,varwert);
-
-			if(observation != null)
-				server.createNumericalObservation(observation, patientID);	
+	private String family = "Bobbington";
+	private String name = "Bob";
+	
+	/* uploads observations for one patient
+	 * 
+	 * */
+	public String upload(Server server, ArrayList<AbstractObservationModel> data, String gender) {
+		int length = data.size();
+		
+		Enumerations.AdministrativeGender enumGender = Enumerations.AdministrativeGender.fromCode(gender);
+		String patientID = server.createPatient(family, name, enumGender);
+		
+		for(int i = 0; i < length; i++) {
+			
+			server.createObservation(data.get(i), patientID);
 		}
 		return patientID;
 	}
+	
+	/* uploads observations for a list of patients
+	 * 
+	 * */
+	public String upload(Server server, ArrayList<ArrayList<AbstractObservationModel>> datalist, ArrayList<String> genderlist) {
+		int length = datalist.size();
+		String lastPatientID = null;
+		for(int i = 0; i < length; i++) {
+			lastPatientID = upload(server, datalist.get(i), genderlist.get(i));
+		}
+		return lastPatientID;
+	}
+	
+	public String getFamily() {
+		return family;
+	}
+
+	public void setFamily(String family) {
+		this.family = family;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 }
