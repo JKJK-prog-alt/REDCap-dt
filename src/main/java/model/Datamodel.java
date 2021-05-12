@@ -4,14 +4,14 @@ public class Datamodel {
 	
 	private String record_id;
 	private String gender;
-	private String hepatitis_b;
+	private Boolean hepatitis_b;
 	private Double bilirubin_concentration;
 //	private String asa_stage;
 //	private String child_pugh;
 //	private String cm_stage;
 	private String form_1_complete;	
 	
-		public Datamodel(String record_id,String gender,String hepatitis_b,Double bilirubin_concentration,/* String asa_stage, String child_pugh,String cm_stage ,*/ String form_1_complete ) {
+		public Datamodel(String record_id,String gender,Boolean hepatitis_b,Double bilirubin_concentration,/* String asa_stage, String child_pugh,String cm_stage ,*/ String form_1_complete ) {
 			
 			this.setRecord_id(record_id);
 			this.setGender(gender);
@@ -43,11 +43,11 @@ public class Datamodel {
 			this.gender = gender;
 		}
 
-		public String getHepatitis_b() {
+		public Boolean getHepatitis_b() {
 			return hepatitis_b;
 		}
 
-		public void setHepatitis_b(String hepatitis_b) {
+		public void setHepatitis_b(Boolean hepatitis_b) {
 			this.hepatitis_b = hepatitis_b;
 		}
 
