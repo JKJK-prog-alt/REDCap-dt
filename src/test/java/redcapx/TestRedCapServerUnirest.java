@@ -7,10 +7,9 @@ public class TestRedCapServerUnirest {
     public void TestRedCapServerUnirest(){
         RedCapServerUnirest testing = new RedCapServerUnirest();
         //testing.getData();
-
-        System.out.println(testing.getData());
         System.out.println(testing.tryConnection());
-        System.out.println(testing.getMetaData());
+        //System.out.println(testing.getData());
+        //System.out.println(testing.getMetaData());
 
     }
 

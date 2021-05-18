@@ -35,7 +35,7 @@ public class RedCapServerUnirest {
 
         }catch(final Exception e) {
             e.printStackTrace();
-        }
+        }System.out.print("Server-Connection = ");
         return false;
     }
 
