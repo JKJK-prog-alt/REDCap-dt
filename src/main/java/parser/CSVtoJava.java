@@ -11,11 +11,11 @@ public class CSVtoJava {
 	
 	public void split() throws IOException{
 		
-		redcapx.RedCapServer.Format format = redcapx.RedCapServer.Format.CSV; 
-    	redcapx.RedCapServer testen = new redcapx.RedCapServer();	
+		 
+    	redcapx.RedCapServerUnirest testen = new redcapx.RedCapServerUnirest();	
 		
 		// getting data from the RecievingData class;		
-		String rohdaten = testen.getData(format);
+		String rohdaten = testen.getData().toString();
 		List<String> data = new ArrayList(Arrays.asList(rohdaten.split(",")));
 		
 		for(int i=0; i<data.size(); i++) {
