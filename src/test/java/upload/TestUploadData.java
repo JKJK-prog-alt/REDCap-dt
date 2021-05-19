@@ -3,7 +3,7 @@ package upload;
 /************************************************************
  * @Author: Jonas Schick, Julia Kurashvili
  * 
- * Test Class for UploadData
+ * Test Class for UploadData.
  * **********************************************************/
 
 import model.*;
