@@ -8,7 +8,7 @@ package upload;
 
 import java.util.ArrayList;
 import model.*;
-import util.Config;
+import util.configuration;
 import server.Server;
 
 public class Printer {
@@ -27,7 +27,7 @@ public class Printer {
 		for(int i = 0; i < list.size(); i++) {
 			if (list.get(i) instanceof NumericalObservationModel) {
 	            NumericalObservationModel numerical = (NumericalObservationModel) list.get(i);
-	             ausgabe = numerical.getObservationSystem().split(Config.OBSERVATION_BASE_URL)[1];
+	             ausgabe = numerical.getObservationSystem().split(configuration.OBSERVATION_BASE_URL)[1];
 	             valUnitCode = numerical.getUnit();
 	             value = numerical.getValue();
 	             System.out.println("*****NUMERICAL*****");
@@ -35,7 +35,7 @@ public class Printer {
 	             System.out.println(value);
 	        } else if (list.get(i) instanceof CategorialObservationModel) {
 	            CategorialObservationModel categorial = (CategorialObservationModel) list.get(i);
-	             ausgabe = categorial.getObservationSystem().split(Config.OBSERVATION_BASE_URL)[1];
+	             ausgabe = categorial.getObservationSystem().split(configuration.OBSERVATION_BASE_URL)[1];
 	             valUnitCode = categorial.getValueCode();
 	             system = categorial.getValueSystem();
 	             System.out.println("*****CATEGORIAL*****");
