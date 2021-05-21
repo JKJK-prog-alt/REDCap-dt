@@ -18,32 +18,19 @@ public class RedCapMockServer extends RedCapServerUnirest {
     }
 
     public JsonNode getData(){
-    	ClassLoader classLoader = getClass().getClassLoader();
-    	InputStream in = classLoader.getResourceAsStream("getData.json");
-		String newLine = System.getProperty("line.separator");
-		BufferedReader reader = new BufferedReader(
-		        new InputStreamReader(in));
-		StringBuilder result = new StringBuilder();
-		try {
-			for (String line; (line = reader.readLine()) != null; ) {
-			    if (result.length() > 0) {
-			        result.append(newLine);
-			    }
-			    result.append(line);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return new JsonNode(result.toString());
+		return loadJsonFile("getData.json");
     }
     /*
     Sends a request to REDCap_API to get the patient metadata
     Returns the MetaData as JsonNode
     */
     public JsonNode getMetaData(){
+    	return loadJsonFile("getMetadata.json");
+    }
+    
+    private JsonNode loadJsonFile(String filename) {
     	ClassLoader classLoader = getClass().getClassLoader();
-    	InputStream in = classLoader.getResourceAsStream("getMetadata.json");
+    	InputStream in = classLoader.getResourceAsStream(filename);
 		String newLine = System.getProperty("line.separator");
 		BufferedReader reader = new BufferedReader(
 		        new InputStreamReader(in));
