@@ -1,5 +1,10 @@
 package util;
 
+/************************************************************
+ * @Author: Lisamaria Eble and Niklaas-Benedikt Oehme
+ * hardcoding solution for the model class input
+ * **********************************************************/
+
 public class configuration {
 	
 	public static final String observationSystem_HEPATITIS_B = "http://sfb125.de/ontology/ihCCApplicationOntology/";

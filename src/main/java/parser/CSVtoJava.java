@@ -1,12 +1,14 @@
 package parser;
 
-//import redcapx.RecievingData;
 import java.util.*;
-
 import java.io.IOException;
 import java.nio.*;
 import java.nio.file.*;
 
+/************************************************************
+ * @Author: Lisamaria Eble and Niklaas-Benedikt Oehme * 
+ * Obsolete class
+ * **********************************************************/
 public class CSVtoJava {
 	
 	public void split() throws IOException{

@@ -1,13 +1,17 @@
 package parser;
 
 import java.util.*;
-
 import kong.unirest.json.JSONArray;
 import kong.unirest.json.JSONObject;
-
 import java.io.IOException;
 import java.nio.*;
 import java.nio.file.*;
+
+/************************************************************
+ * @Author: Lisamaria Eble and Niklaas-Benedikt Oehme * 
+ * Obsolete class
+ * **********************************************************/
+
 
 public class JSONConverter {
 	
