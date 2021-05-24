@@ -1,4 +1,12 @@
 package redcapx;
+
+/************************************************************
+ * @Author: Lea Laitenberger und Katharina Schreiweis
+ *
+ * This class tests the methods from package redcapx:
+ * TestRedCapMockServer is written By Keno, to avoid server connection problems with the "real" RedCap Server
+ * **********************************************************/
+
 import org.junit.Test;
 
 

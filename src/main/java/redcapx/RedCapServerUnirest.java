@@ -1,4 +1,16 @@
 package redcapx;
+
+/************************************************************
+ * @Author: Lea Laitenberger und Katharina Schreiweis
+ *
+ * This class contains the methods:
+ * tryConnection()
+ * getData()
+ * getMetaData()
+ * --> the last two return JsonNode
+ * **********************************************************/
+
+
 import kong.unirest.JsonNode;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
