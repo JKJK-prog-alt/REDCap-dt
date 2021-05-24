@@ -1,7 +1,7 @@
 package upload;
 
 /************************************************************
- * @Author: Keno Maerz, Jonas Schick, Julia Kurashvili
+ * @Author: Jonas Schick, Julia Kurashvili
  * 
  * Test Class for Printer
  * **********************************************************/
@@ -17,7 +17,7 @@ import org.hl7.fhir.r4.model.Enumerations;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestPrint {
+public class TestPrinter {
 	private static Server server;
 	private static Printer printer;
 	
