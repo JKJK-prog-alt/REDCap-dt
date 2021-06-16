@@ -46,6 +46,7 @@ public class RedCapServerUnirest {
             }
 
         }catch(final Exception e) {
+            System.out.print("Can't build Server-Connection");
             e.printStackTrace();
         }System.out.print("Server-Connection = ");
         return false;
@@ -70,6 +71,7 @@ public class RedCapServerUnirest {
             System.out.println(response.getStatusText());
             responsebody=response.getBody();
         }catch(final Exception e) {
+            System.out.print("Can't build Server-Connection");
             e.printStackTrace();
         }
         return responsebody;
@@ -93,6 +95,7 @@ public class RedCapServerUnirest {
             System.out.println(response.getStatusText());
             responsebody=response.getBody();
         }catch(final Exception e) {
+            System.out.print("Can't build Server-Connection");
             e.printStackTrace();
         }
         return responsebody;
