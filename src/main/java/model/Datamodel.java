@@ -1,5 +1,11 @@
-package model;
 
+package model;
+/************************************************************
+ * @Author: Lisamaria Eble, Niklaas-Benedikt Oehme
+ * Observationmodel for every Observation possible
+ * **********************************************************/
+
+@Deprecated
 public class Datamodel {
 	
 	private String record_id;
