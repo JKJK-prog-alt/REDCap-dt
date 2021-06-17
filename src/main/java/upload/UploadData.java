@@ -1,5 +1,16 @@
 package upload;
 
+/************************************************************
+ * @Author: Jonas Schick, Julia Kurashvili
+ * 
+ * This class uploads anonymous observations into the local
+ * server 
+ * 
+ * 	Methods:
+ * 		+ transferData(Server)
+ * 		+ upload(Server, ArrayList<AbstractObservationModel>, String)
+ * 		+ upload(Server, ArrayList<ArrayList<AbstractObservationModel>>, ArrayList<String>)
+ * **********************************************************/
 
 import java.util.ArrayList;
 import org.hl7.fhir.r4.model.Enumerations;
@@ -7,17 +18,13 @@ import model.*;
 import parser.JsontoJava;
 import server.Server;
 
-/************************************************************
- * @Author: Jonas Schick, Julia Kurashvili
- * 
- * UploadData-Class uploads anonymous observations into the
- * local server 
- * **********************************************************/
-
 public class UploadData {
 	private String family = "Bobbington";
 	private String name = "Bob";
 	
+	/* gets data from the RedCAP server and uploads them into the local server
+	 * 
+	 * */
 	public String transferData(Server server) {
 		JsontoJava conv = new JsontoJava();
         conv.converter();
