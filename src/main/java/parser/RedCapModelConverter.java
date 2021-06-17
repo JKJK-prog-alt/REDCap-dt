@@ -17,7 +17,7 @@ public class RedCapModelConverter {
 	ArrayList<String> recordId = new ArrayList<String>();
 	ArrayList<String> gender = new ArrayList<String>();
 	ArrayList<Boolean> hepatitis_B = new ArrayList<Boolean>();
-	ArrayList<Double> billirubin = new ArrayList<Double>();
+	ArrayList<Double> bilirubin = new ArrayList<Double>();
 	ArrayList<String> form_complete = new ArrayList<String>();    
 	ArrayList<AbstractObservationModel> BooleanObservationModel = new ArrayList<AbstractObservationModel>();
 	ArrayList<AbstractObservationModel> NumericalObservationModel = new ArrayList<AbstractObservationModel>();    
@@ -44,7 +44,7 @@ public class RedCapModelConverter {
 				System.err.println("False input");
 			}
 
-			billirubin.add(i, jobj.getDouble("bilirubin_concentration"));
+			bilirubin.add(i, jobj.getDouble("bilirubin_concentration"));
 			form_complete.add(i, jobj.getString("form_1_complete"));       	
 		}
 	}
@@ -54,7 +54,7 @@ public class RedCapModelConverter {
 	public ArrayList<AbstractObservationModel> getBooleanObs () {
 
 		for (int i = 0; i < hepatitis_B.size(); i++) {
-			BooleanObservationModel boolobs = new BooleanObservationModel(Enumeration.HEPATITIS_B_CODE.getValue(), Enumeration.HEPATITIS_B_CODE.getValue(), hepatitis_B.get(i));
+			BooleanObservationModel boolobs = new BooleanObservationModel(Enumeration.SYSTEM_HEPATITIS_B.getValue(), Enumeration.HEPATITIS_B_CODE.getValue(), hepatitis_B.get(i));
 			BooleanObservationModel.add(i, boolobs);  
 		}
 		return BooleanObservationModel;
@@ -64,8 +64,8 @@ public class RedCapModelConverter {
 	 */ 
 	public ArrayList<AbstractObservationModel> getNumericalObs() {
 
-		for (int i = 0; i < billirubin.size(); i++) {
-			NumericalObservationModel numobs = new NumericalObservationModel(Enumeration.SYSTEM_BILLIRUBIN.getValue(), Enumeration.BILLIRUBIN_CODE.getValue(), billirubin.get(i).doubleValue(), Enumeration.UNIT.getValue());
+		for (int i = 0; i < bilirubin.size(); i++) {
+			NumericalObservationModel numobs = new NumericalObservationModel(Enumeration.SYSTEM_BILIRUBIN.getValue(), Enumeration.BILIRUBIN_CODE.getValue(), bilirubin.get(i).doubleValue(), Enumeration.UNIT.getValue());
 			NumericalObservationModel.add(i, numobs);
 		}
 		return NumericalObservationModel;

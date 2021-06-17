@@ -30,9 +30,11 @@ public class TestEnumeration {
 		RedCapMockServer redcapMockServer = new RedCapMockServer();
 		rohdaten = redcapMockServer.getData();
 		RedCapModelConverter converter = new RedCapModelConverter(rohdaten);
-		ArrayList<AbstractObservationModel> NumericalObservationModel = converter.getNumericalObs();  		        
+		ArrayList<AbstractObservationModel> NumericalObservationModel = converter.getNumericalObs();  		
+		ArrayList<AbstractObservationModel> BooleanObservationModel = converter.getBooleanObs();  	
 
 		assertEquals("Anzahl der Observationen != 3",3, NumericalObservationModel.size());
+		assertEquals("Anzahl der Observationen != 3",3, BooleanObservationModel.size());
 
 
 	}
