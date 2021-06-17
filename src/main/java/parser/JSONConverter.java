@@ -11,7 +11,7 @@ import java.nio.file.*;
  * @Author: Lisamaria Eble and Niklaas-Benedikt Oehme * 
  * Obsolete class
  * **********************************************************/
-
+@Deprecated
 
 public class JSONConverter {
 	
