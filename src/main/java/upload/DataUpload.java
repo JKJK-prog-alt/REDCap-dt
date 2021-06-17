@@ -18,7 +18,7 @@ import model.*;
 import parser.JsontoJava;
 import server.Server;
 
-public class UploadData {
+public class DataUpload {
 	private String family = "Bobbington";
 	private String name = "Bob";
 	
@@ -60,9 +60,10 @@ public class UploadData {
 		}
 		String patientID = server.createPatient(family, name, enumGender);
 		
-		for(int i = 0; i < length; i++) {
+		//for(int i = 0; i < length; i++) {
+		for(AbstractObservationModel model : data) {
 			
-			server.createObservation(data.get(i), patientID);
+			server.createObservation(model, patientID);
 		}
 		return patientID;
 	}

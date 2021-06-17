@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class TestUploadData {
 	private static Server server;
-	private static UploadData upload;
+	private static DataUpload upload;
 	private static Printer printer;
 	
 	@BeforeClass
@@ -23,7 +23,7 @@ public class TestUploadData {
 		server = new Server();
 		server.testConnection();
         printer = new Printer();
-        upload = new UploadData();
+        upload = new DataUpload();
     }
 	
 	@Test
