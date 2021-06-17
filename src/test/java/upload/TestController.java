@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestUploadData {
+public class TestController {
 	private static Server server;
-	private static UploadData upload;
 	private static Printer printer;
 	
 	@BeforeClass
@@ -23,7 +22,6 @@ public class TestUploadData {
 		server = new Server();
 		server.testConnection();
         printer = new Printer();
-        upload = new UploadData();
     }
 	
 	@Test
@@ -34,7 +32,7 @@ public class TestUploadData {
 		data.add(new BooleanObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/","chronic_hepatitis_b_observation", true));
 		data.add(new NumericalObservationModel("http://sfb125.de/ontology/ihCCApplicationOntology/", "bilirubin_concentration", 22, "mg/dl"));
 
-		String success = upload.upload(server, data, "male");
+		String success = Controller.upload(server, data, "male");
 		
 		int numberAllPatients = allPatients.size();
 		 ArrayList<String> allPatientsAdded = server.getPatients();
@@ -76,14 +74,14 @@ public class TestUploadData {
 		assertEquals(3, all.size());
 		assertEquals(3, gender.size());
 		
-		String successTwo = upload.upload(server, all, gender);
+		String successTwo = Controller.upload(server, all, gender);
 		assertEquals(36, successTwo.length());
 	}
 	
 	@Test
 	public void testTransfer() {
 		ArrayList<String> patients = server.getPatients();
-		String lastPatientID = upload.transferData(server);
+		String lastPatientID = Controller.transferData(server);
 		ArrayList<String> updatedPatients = server.getPatients();
 		ArrayList<AbstractObservationModel> observations = server.getObservationsOfPatient(lastPatientID);
 		assertEquals(36, lastPatientID.length());

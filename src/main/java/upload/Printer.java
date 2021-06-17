@@ -24,10 +24,9 @@ public class Printer {
 	 * 
 	 * */
 	public void printPatients(ArrayList<String> list) {
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
+		for(String string : list) {
+			System.out.println(string);
 		}
-	
 	}
 	
 	/* shows the observations of a patient
@@ -40,9 +39,9 @@ public class Printer {
 		String valUnitCode = null;
 		String system = null;
 		double value = 0;
-		for(int i = 0; i < list.size(); i++) {
-			if (list.get(i) instanceof NumericalObservationModel) {
-	            NumericalObservationModel numerical = (NumericalObservationModel) list.get(i);
+		for(AbstractObservationModel model : list) {
+			if (model instanceof NumericalObservationModel) {
+	            NumericalObservationModel numerical = (NumericalObservationModel) model;
 	             ausgabe = numerical.getObservationSystem().split(configuration.OBSERVATION_BASE_URL)[1];
 	             valUnitCode = numerical.getUnit();
 	             value = numerical.getValue();
@@ -50,8 +49,8 @@ public class Printer {
 	             System.out.println("Observation System Code: " + ausgabe.split("/")[0]);
 	             System.out.println("Value: " + value);
 	             System.out.println("Unit: " + valUnitCode);
-	        } else if (list.get(i) instanceof CategorialObservationModel) {
-	            CategorialObservationModel categorial = (CategorialObservationModel) list.get(i);
+	        } else if (model instanceof CategorialObservationModel) {
+	            CategorialObservationModel categorial = (CategorialObservationModel) model;
 	             ausgabe = categorial.getObservationSystem().split(configuration.OBSERVATION_BASE_URL)[1];
 	             valUnitCode = categorial.getValueCode();
 	             system = categorial.getValueSystem();
@@ -72,5 +71,14 @@ public class Printer {
 		ArrayList<AbstractObservationModel> observations = server.getObservationsOfPatient(patientID);
 		printAllObs(observations);
 	}
+	
+	/* 
+	 * public String toString() {
+	 *    return "*****NUMERICAL***** \r" + "Observation System Code: " +  observationSystem.split("/")[0] + "\r"
+	 *           + "Value: " + numericalValue + "\r" + "Unit: " + unit;
+	 * }
+	 * */
+	
+	// syso(MyObservation)
 	
 }
