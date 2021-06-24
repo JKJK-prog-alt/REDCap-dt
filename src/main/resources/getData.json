@@ -1,0 +1,32 @@
+[
+  {
+    "record_id": "1",
+    "gender": "male",
+    "hepatitis_b": "1",
+    "bilirubin_concentration": "33",
+    "asa_stage": "",
+    "child_pugh": "",
+    "cm_stage": "",
+    "form_1_complete": "2"
+  },
+  {
+    "record_id": "2",
+    "gender": "female",
+    "hepatitis_b": "0",
+    "bilirubin_concentration": "12",
+    "asa_stage": "",
+    "child_pugh": "",
+    "cm_stage": "",
+    "form_1_complete": "2"
+  },
+  {
+    "record_id": "3",
+    "gender": "intersex",
+    "hepatitis_b": "0",
+    "bilirubin_concentration": "100",
+    "asa_stage": "",
+    "child_pugh": "",
+    "cm_stage": "",
+    "form_1_complete": "2"
+  }
+]
