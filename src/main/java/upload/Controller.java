@@ -33,9 +33,11 @@ public class Controller {
 		
 			/* If the RedCap server can be reached, use RedCapserverUnirest instead
 			 * of RedCapMockServer 
+			 *
 			 * */
-//			RedCapServerUnirest redcapServer = new RedCapServerUnirest();
-//			rohdaten = redcapServer.getData();
+		
+//		RedCapServerUnirest redcapServer = new RedCapServerUnirest();
+//		rohdaten = redcapServer.getData();
 
 		RedCapMockServer redcapMockServer = new RedCapMockServer();
 		rohdaten = redcapMockServer.getData();
